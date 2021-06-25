@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build-docs": "apidoc -i ./ -e node_modules -o apidoc/",
+    "start": "npm run build-docs && nodemon index.js",
     "test": "echo 'test'"
   },
   "author": "",
