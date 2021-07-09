@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"lifted18f61d8c": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

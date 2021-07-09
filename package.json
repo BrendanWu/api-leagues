@@ -13,10 +13,13 @@
   "dependencies": {
     "apidoc": "^0.28.1",
     "bcrypt": "^5.0.1",
+    "cognito-express": "^2.0.19",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jest": "^27.0.4",
     "lodash": "^4.17.21",
-    "mongoose": "^5.12.14"
+    "mongoose": "^5.12.14",
+    "node-cron": "^3.0.0"
   }
 }

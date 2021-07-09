@@ -1,48 +1,38 @@
-const express = require('express')
-const path = require('path')
-const app = express()
+const express = require("express");
+const path = require("path");
+const app = express();
+const CognitoExpress = require("cognito-express");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const connectLiftedDB = require("./services/connectLiftedDB");
+const liftedAuth = require("./services/liftedAuth")
+const liftedAppContext = require("./services/liftedAppContext");
 
-process.on('SIGINFO', (code)=> {
-	console.log("Process pid", process.pid);
+//top level system configuration
+dotenv.config();
+//top level system processes
+process.on("SIGINFO", () => {
+  console.log("Leagues API pid", process.pid, "running Node js", process.version);
 });
-
-
-
-app.use(express.static(path.join(__dirname,"/apidoc")))
-app.get("/api", (req,res)=> {
-	res.sendFile(path.join(__dirname,"/apidoc/index.html"));
-})
-
-/**
- * @api {get} /user/:id Request User information
- * @apiName GetUser
- * @apiGroup User
- *
- * @apiParam {Number} id Users unique ID.
- *
- * @apiSuccess {String} firstname Firstname of the User.
- * @apiSuccess {String} lastname  Lastname of the User.
- */
-
-/**
- * @api {get} /user/:id Request User information
- * @apiName GetUser
- * @apiGroup Invitation
- *
- * @apiParam {Number} id Users unique ID.
- *
- * @apiSuccess {String} firstname Firstname of the User.
- * @apiSuccess {String} lastname  Lastname of the User.
- */
-
-app.get("/api/t", (req,res)=> {
-	res.send("hi")
-})
-
-
-app.listen(3000, ()=>{
-	console.log("Leagues API v1.0 is running on port 3000");
-})
-
+//top level api http configuration
+connectLiftedDB();
+app.use(express.json());
+app.use(cors());
+//top level api documentation
+app.use(express.static(path.join(__dirname, "/apidoc")));
+app.get("/docs", (req, res) => {
+  res.sendFile(path.join(__dirname, "/apidoc/index.html"));
+});
+//auth routes (idtoken)
+const authenticatedRoute = express.Router();
+app.use("/api", authenticatedRoute);
+//find the user (org context)
+authenticatedRoute.use(liftedAuth);
+//find the app (app context)
+authenticatedRoute.use(liftedAppContext);
+const PORT = process.env.PORT ? process.env.PORT : 5000
+app.listen(PORT, () => {
+  console.log(`Leagues API v${process.env.npm_package_version} is running on port ${PORT}`);
+});
 
 module.exports = app;
