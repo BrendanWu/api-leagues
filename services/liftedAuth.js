@@ -4,6 +4,7 @@ const {cognitoConfigObject} = require("../constants");
 
 const liftedAuth = (req, res, next) => {
     const idTokenFromClient = req.headers.idtoken;
+
     if (!idTokenFromClient)
       return res.status(401).send("Access Token missing from header");
   
@@ -13,7 +14,8 @@ const liftedAuth = (req, res, next) => {
   
     cognitoExpress.validate(idTokenFromClient, async function (err, awsUser) {
       if (err) return res.status(401).send(err);
-      res.locals.user = awsUser;
+
+      res.locals.awsUser = awsUser;
       next();
     });
   }

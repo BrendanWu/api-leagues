@@ -6,20 +6,25 @@
   "scripts": {
     "build-docs": "apidoc -i ./ -e node_modules -o apidoc/",
     "start": "npm run build-docs && nodemon index.js",
-    "test": "echo 'test'"
+    "test": "echo 'test'",
+    "myScript": "node -e 'require(\"./services/scrapeWebsiteElement\").scrapeWebsiteElement(`https://urbantoronto.ca`,`.feed-article-title`,`firstChild.innerText`,49)'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apidoc": "^0.28.1",
+    "async": "^3.2.0",
     "bcrypt": "^5.0.1",
     "cognito-express": "^2.0.19",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.5.1",
     "jest": "^27.0.4",
     "lodash": "^4.17.21",
     "mongoose": "^5.12.14",
-    "node-cron": "^3.0.0"
+    "node-cron": "^3.0.0",
+    "puppeteer": "^10.1.0"
   }
 }

@@ -7,6 +7,7 @@ const cors = require("cors");
 const connectLiftedDB = require("./services/connectLiftedDB");
 const liftedAuth = require("./services/liftedAuth")
 const liftedAppContext = require("./services/liftedAppContext");
+const scraperRouter = require("./routes/scraperRouter");
 
 //top level system configuration
 dotenv.config();
@@ -30,9 +31,14 @@ app.use("/api", authenticatedRoute);
 authenticatedRoute.use(liftedAuth);
 //find the app (app context)
 authenticatedRoute.use(liftedAppContext);
+authenticatedRoute.get("/testuser", (req, res) => {
+  res.status(200).send("Lifted app");
+})
+authenticatedRoute.use("/scraper", scraperRouter)
 const PORT = process.env.PORT ? process.env.PORT : 5000
+const version = process.env.npm_package_version ? `v${process.env.npm_package_version} ` : ''
 app.listen(PORT, () => {
-  console.log(`Leagues API v${process.env.npm_package_version} is running on port ${PORT}`);
+  console.log(`Leagues API ${version}is running on port ${PORT}`);
 });
 
 module.exports = app;

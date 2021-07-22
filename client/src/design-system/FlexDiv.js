@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import useBreakpoint from '../hooks/useBreakpoint'
 
 const StyledFlexDiv = styled.div(props => ({
     display: "flex",
@@ -9,6 +9,11 @@ const StyledFlexDiv = styled.div(props => ({
     justifyContent: props.justify && props.justify,
     alignItems: props.align && props.align,
     flexDirection: props.vert ? "column" : "row",
+    // flexDirection: (props.container && props.breakpoint === "sm" || props.container && props.breakpoint === "xs" )? "column" : "row",
+    // padding:5,
+    // margin:5,
+    border:"1px solid black",
+    gap:16,
     paddingLeft : props.pl && props.pl,
     paddingRight: props.pr && props.pr,
     paddingTop: props.pt && props.pb,
@@ -22,9 +27,11 @@ const StyledFlexDiv = styled.div(props => ({
 }));
 
 export default function FlexDiv(props) {
+   
+    const breakpoint = useBreakpoint()
     return (
         
-        <StyledFlexDiv {...props}>
+        <StyledFlexDiv {...props} breakpoint={breakpoint}>
             {props.children}
         </StyledFlexDiv>
     )

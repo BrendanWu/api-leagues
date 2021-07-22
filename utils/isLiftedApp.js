@@ -1,5 +1,6 @@
 const stringIsLiftedAppName = (a) => {
     const liftedApps = ["ellicot", "leagues", "solutions"];
+
     if (typeof a != "string") {
       return false;
     }
