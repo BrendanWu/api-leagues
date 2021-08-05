@@ -6,7 +6,7 @@ const StyledInput = styled.input.attrs(props => ({
   altTheme: props.altTheme,
 }))(props => ({
   flex: 1,
-  height: 50,
+  height: 32,
   background: props.altTheme ? 'white' : '#1c1c1c',
   color: props.altTheme ? 'black' : 'white',
   border: props.altTheme ? '2px solid lightgray' : '2px solid white',

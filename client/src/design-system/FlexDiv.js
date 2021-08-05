@@ -12,7 +12,7 @@ const StyledFlexDiv = styled.div(props => ({
     // flexDirection: (props.container && props.breakpoint === "sm" || props.container && props.breakpoint === "xs" )? "column" : "row",
     // padding:5,
     // margin:5,
-    border:"1px solid black",
+    // border:"1px solid black",
     gap:16,
     paddingLeft : props.pl && props.pl,
     paddingRight: props.pr && props.pr,
