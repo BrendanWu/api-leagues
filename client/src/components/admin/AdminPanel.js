@@ -5,6 +5,8 @@ import FlexDiv from "../../design-system/FlexDiv";
 import { useSelector } from "react-redux";
 import { Route, useHistory } from "react-router-dom";
 import AdminScrape from "./AdminScrape"
+import MarkdownEditor from '../MarkdownEditor'
+import AdminPosts from './AdminPosts'
 const AdminPanel = () => {
     const auth = useSelector((state) => state.auth);
     const history = useHistory()
@@ -12,12 +14,12 @@ const AdminPanel = () => {
       history.push(route);
     }
   return (
-    <>
+    <div>
           <FlexDiv container>
           <FlexDiv size={2} vert>
   
           </FlexDiv>
-          <FlexDiv size={8} align="center" justify="space-between" pl="1em">
+          <FlexDiv size={8} align="center" justify="space-between" pl="2em">
           <h3>Admin Panel</h3>
         <p>
         Logged in as {auth.email}
@@ -26,23 +28,31 @@ const AdminPanel = () => {
       </FlexDiv>
 
       <FlexDiv container>
-          <FlexDiv size={2} vert>
-            <Button label={`Scraper`} onClick={()=>historyPushTo("/admin/scrape")}/>
+          <FlexDiv size={2} vert style={{background:"white", color:"black", padding:16}}>
+            <div onClick={()=>historyPushTo("/")}>Exit</div>
+            <div onClick={()=>historyPushTo("/admin")}>Home</div>
+            <div onClick={()=>historyPushTo("/admin/scrape")}>Scraper</div>
+            <div onClick={()=>historyPushTo("/admin/posts")}>Manage posts</div>
               {[1,2,3,4,5,6,7,8,9,10].map((tab, i)=>{
                   return (
-                      <Button label={`Tab ${tab}`}/>
+                      <div>{`Tab ${tab}`}</div>
                   )
               })}
           </FlexDiv>
-          <FlexDiv size={8} vert pl="1em">
+          <FlexDiv size={8} vert>
               {/* <h5 style={{margin:0}}>Tab contents</h5> */}
+              <Route path="/admin/posts" exact>
+
+            <AdminPosts auth={auth}/>
+              </Route>
+              
             <Route path="/admin/scrape" exact>
             <AdminScrape auth={auth}/>
               </Route>
             
           </FlexDiv>
       </FlexDiv>
-    </>
+    </div>
   );
 };
 

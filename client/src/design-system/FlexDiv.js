@@ -9,6 +9,7 @@ const StyledFlexDiv = styled.div(props => ({
     justifyContent: props.justify && props.justify,
     alignItems: props.align && props.align,
     flexDirection: props.vert ? "column" : "row",
+    boxShadow: props.card && "0 4px 8px 0 rgba(0,0,0,0.2)",
     // flexDirection: (props.container && props.breakpoint === "sm" || props.container && props.breakpoint === "xs" )? "column" : "row",
     // padding:5,
     // margin:5,
