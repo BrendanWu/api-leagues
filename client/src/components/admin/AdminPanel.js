@@ -7,6 +7,7 @@ import { Route, useHistory } from "react-router-dom";
 import AdminScrape from "./AdminScrape"
 import MarkdownEditor from '../MarkdownEditor'
 import AdminPosts from './AdminPosts'
+import AdminDocumentation from "./AdminDocumentation";
 const AdminPanel = () => {
     const auth = useSelector((state) => state.auth);
     const history = useHistory()
@@ -30,9 +31,11 @@ const AdminPanel = () => {
       <FlexDiv container>
           <FlexDiv size={2} vert style={{background:"white", color:"black", padding:16}}>
             <div onClick={()=>historyPushTo("/")}>Exit</div>
+            <div><a target="_blank" href="https://us-east-1.admin.amplifyapp.com/admin/d1ssam03exdti8/dev/home">AWS</a></div>
             <div onClick={()=>historyPushTo("/admin")}>Home</div>
+            <div onClick={()=>historyPushTo("/admin/documentation")}>Documentation</div>
             <div onClick={()=>historyPushTo("/admin/scrape")}>Scraper</div>
-            <div onClick={()=>historyPushTo("/admin/posts")}>Manage posts</div>
+            <div onClick={()=>historyPushTo("/admin/posts")}>Posts</div>
               {[1,2,3,4,5,6,7,8,9,10].map((tab, i)=>{
                   return (
                       <div>{`Tab ${tab}`}</div>
@@ -44,6 +47,10 @@ const AdminPanel = () => {
               <Route path="/admin/posts" exact>
 
             <AdminPosts auth={auth}/>
+              </Route>
+              <Route path="/admin/documentation" exact>
+
+            <AdminDocumentation auth={auth}/>
               </Route>
               
             <Route path="/admin/scrape" exact>

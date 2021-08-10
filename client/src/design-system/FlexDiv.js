@@ -19,10 +19,13 @@ const StyledFlexDiv = styled.div(props => ({
     paddingRight: props.pr && props.pr,
     paddingTop: props.pt && props.pb,
     paddingBottom: props.pb && props.pb,
+    padding: props.padding && props.padding,
     marginLeft : props.ml && props.ml,
     marginRight: props.mr && props.mr,
     marginTop: props.mt && props.mb,
     marginBottom: props.mb && props.mb,
+    background: props.card &&"white",
+    color: props.card  &&"black"
 
 
 }));

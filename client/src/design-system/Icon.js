@@ -32,7 +32,7 @@ import styled from "styled-components";
 // import saslogo from "./saslogo.svg";
 // import ReactTooltip from 'react-tooltip';
 // import reason from './icons/reason.png';
-import r from './icons/r.png';
+import removeIcon from './icons/removeIcon.jpeg';
  
 const StyledIcon = styled.img.attrs((props) => ({src: 
     // props.variant === "refresh" ? refresh :
@@ -65,9 +65,9 @@ const StyledIcon = styled.img.attrs((props) => ({src:
     // props.variant === "up" ? up :
     // props.variant === "saslogo" ? saslogo :
     // props.variant === "reason" ? reason :
-    props.variant === "r" ? r :
+    props.variant === "remove" ? removeIcon :
     
-    props.variant === "tool" && r 
+    props.variant === "tool" && removeIcon
     
 }))((props) => ({
   height: props.logo ? props.logo + '%' : props.size + "px",
